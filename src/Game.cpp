@@ -4,7 +4,7 @@
 
 #include "Game.h"
 
-Game::Game() : widow("DeathKitty"), renderer(widow), textureHolder(renderer), root("root") {
+Game::Game() : widow("DeathKitty"), renderer(widow), textureHolder(renderer), root("root"), timer(60) {
 
 }
 
@@ -21,6 +21,9 @@ void Game::Update() {
     root.Update();
 
     input.Clear();
+
+    timer.Loop();
+    timer.Wait();
 }
 
 void Game::Render() {

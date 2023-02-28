@@ -10,6 +10,7 @@
 #include <engine/Input.h>
 #include <engine/TextureHolder.h>
 #include <engine/Entity.h>
+#include <engine/Timer.h>
 
 class Game {
 public:
@@ -27,6 +28,7 @@ public:
     engine::Input input;
     engine::TextureHolder textureHolder;
     engine::Entity root;
+    engine::Timer timer;
 };
 
 
