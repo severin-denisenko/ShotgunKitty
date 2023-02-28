@@ -9,6 +9,7 @@
 #include <engine/Renderer.h>
 #include <engine/Input.h>
 #include <engine/TextureHolder.h>
+#include <engine/Entity.h>
 
 class Game {
 public:
@@ -20,11 +21,12 @@ public:
     void Render();
 
     bool Running = true;
-private:
+
     engine::Widow widow;
     engine::Renderer renderer;
     engine::Input input;
     engine::TextureHolder textureHolder;
+    engine::Entity root;
 };
 
 

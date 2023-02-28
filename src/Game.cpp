@@ -4,7 +4,7 @@
 
 #include "Game.h"
 
-Game::Game() : widow("DeathKitty"), renderer(widow), textureHolder(renderer) {
+Game::Game() : widow("DeathKitty"), renderer(widow), textureHolder(renderer), root("root") {
 
 }
 
@@ -18,13 +18,15 @@ void Game::Update() {
     if (input.IsExit())
         Running = false;
 
+    root.Update();
+
     input.Clear();
 }
 
 void Game::Render() {
     renderer.Clear();
 
-    textureHolder.Draw("Background", 0, 0, widow.width, widow.height);
+    textureHolder.Draw("Background", 0, 0, widow.height, widow.height);
 
     renderer.Show();
 }
