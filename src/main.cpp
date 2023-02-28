@@ -3,11 +3,14 @@
 int main() {
     Game game;
 
+    game.Setup();
+
     while (game.Running){
-        game.Events();
         game.Update();
         game.Render();
     }
+
+    game.Shutdown();
 
     return 0;
 }

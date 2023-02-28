@@ -4,25 +4,35 @@
 
 #include "Game.h"
 
-#include <SDL.h>
+Game::Game() : widow("DeathKitty"), renderer(widow), textureHolder(renderer) {
 
-Game::Game() : widow(), renderer(widow) {
-
-}
-
-void Game::Events() {
-    if (input.IsKeyPressed("Q"))
-        Running = false;
-    if (input.IsKeyPressed("F"))
-        widow.toggleFullScreen();
-
-    input.Clear();
 }
 
 void Game::Update() {
     input.Collect();
+
+    if (input.IsKeyPressed("Q"))
+        Running = false;
+    if (input.IsKeyPressed("F"))
+        widow.toggleFullScreen();
+    if (input.IsExit())
+        Running = false;
+
+    input.Clear();
 }
 
 void Game::Render() {
-    renderer.Update();
+    renderer.Clear();
+
+    textureHolder.Draw("Background", 0, 0, widow.width, widow.height);
+
+    renderer.Show();
+}
+
+void Game::Setup() {
+    textureHolder.Load("assets/hello.png", "Background");
+}
+
+void Game::Shutdown() {
+    textureHolder.Unload("Background");
 }

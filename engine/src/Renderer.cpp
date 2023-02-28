@@ -9,7 +9,7 @@
 #include <SDL.h>
 
 namespace engine {
-    Renderer::Renderer(Widow& window) {
+    Renderer::Renderer(Widow& window) : widow(window) {
         renderer = SDL_CreateRenderer(window.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
         if (!renderer)
@@ -18,12 +18,15 @@ namespace engine {
         SDL_SetRenderDrawColor(renderer, 20, 100, 50, 255);
     }
 
-    void Renderer::Update() {
+    void Renderer::Clear() {
         SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
     }
 
     Renderer::~Renderer() {
         SDL_DestroyRenderer(renderer);
+    }
+
+    void Renderer::Show() {
+        SDL_RenderPresent(renderer);
     }
 } // engine

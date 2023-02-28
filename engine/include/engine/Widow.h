@@ -13,7 +13,7 @@ namespace engine {
 
     class Widow {
     public:
-        Widow();
+        Widow(const char* name);
         ~Widow();
 
         void toggleFullScreen();

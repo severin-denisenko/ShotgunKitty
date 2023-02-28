@@ -38,4 +38,15 @@ namespace engine{
     void Input::Clear() {
         events.clear();
     }
+
+    bool Input::IsExit() {
+        for (auto i = events.begin(); i != events.end(); ++i) {
+            if ((*i)->type == SDL_QUIT){
+                events.erase(i);
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

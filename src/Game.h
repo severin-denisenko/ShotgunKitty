@@ -8,12 +8,14 @@
 #include <engine/Widow.h>
 #include <engine/Renderer.h>
 #include <engine/Input.h>
+#include <engine/TextureHolder.h>
 
 class Game {
 public:
     Game();
 
-    void Events();
+    void Setup();
+    void Shutdown();
     void Update();
     void Render();
 
@@ -22,6 +24,7 @@ private:
     engine::Widow widow;
     engine::Renderer renderer;
     engine::Input input;
+    engine::TextureHolder textureHolder;
 };
 
 

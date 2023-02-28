@@ -9,22 +9,28 @@
 #include <SDL.h>
 
 namespace engine {
-    Widow::Widow() {
+    Widow::Widow(const char* name) {
         if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
             throw std::runtime_error("Can't initialize SDL");
 
-        window = SDL_CreateWindow("SDL2 Window",
+        window = SDL_CreateWindow(name,
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
-                                  width, height,
-                                  SDL_WINDOW_FULLSCREEN);
-
-        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+                                  windowedWidth, windowedHeight,
+                                  SDL_WINDOW_SHOWN);
 
         if (!window)
             throw std::runtime_error("Can't create SDL window");
 
+        int displayIndex = SDL_GetWindowDisplayIndex(window);
+        SDL_Rect displayBounds;
+        SDL_GetDisplayBounds(displayIndex, &displayBounds);
+
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
         SDL_ShowCursor(SDL_FALSE);
+
+        width = displayBounds.w;
+        height = displayBounds.h;
     }
 
     Widow::~Widow() {

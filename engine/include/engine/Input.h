@@ -18,6 +18,7 @@ namespace engine{
         void Clear();
 
         bool IsKeyPressed(const char* key);
+        bool IsExit();
     private:
         std::list<SDL_Event*> events;
     };

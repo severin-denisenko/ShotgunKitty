@@ -16,9 +16,12 @@ namespace engine {
         explicit Renderer(Widow& widow);
         ~Renderer();
 
-        void Update();
+        void Clear();
+        void Show();
 
         SDL_Renderer* renderer;
+    private:
+        Widow& widow;
     };
 
 } // engine
