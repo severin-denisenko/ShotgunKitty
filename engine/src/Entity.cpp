@@ -46,4 +46,12 @@ namespace engine {
 
         created = true;
     }
+
+    void Entity::Render() {
+        for (auto& i: children) {
+            i->Render();
+        }
+
+        renderCurrent();
+    }
 } // engine

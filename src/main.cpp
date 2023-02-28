@@ -1,16 +1,9 @@
-#include "Game.h"
+#include "KillerKitty.h"
 
 int main() {
-    Game game;
+    KillerKitty game;
 
-    game.Setup();
-
-    while (game.Running){
-        game.Update();
-        game.Render();
-    }
-
-    game.Shutdown();
+    game.Run();
 
     return 0;
 }

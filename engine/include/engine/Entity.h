@@ -13,10 +13,11 @@
 #include "Transform.h"
 
 namespace engine {
+    class Game;
 
     class Entity {
     public:
-        explicit Entity(std::string name, Entity* parent = nullptr) : name(std::move(name)), parent(parent) {}
+        explicit Entity(std::string name, Game& game, Entity* parent = nullptr) : name(std::move(name)), game(game), parent(parent) {}
         virtual ~Entity() = default;
 
         Transform getWorldTransform();
@@ -26,12 +27,16 @@ namespace engine {
 
         void Update();
         void Create();
+        void Render();
 
         Transform transform;
         std::string name;
     protected:
         virtual void updateCurrent() {}
         virtual void createCurrent() {}
+        virtual void renderCurrent() {}
+
+        Game& game;
     private:
         bool created = false;
         std::vector<std::unique_ptr<Entity>> children;
