@@ -2,20 +2,23 @@
 // Created by Severin on 01.03.2023.
 //
 
-#ifndef SHOTGUNKITTY_TILEMAP_H
-#define SHOTGUNKITTY_TILEMAP_H
+#ifndef SHOTGUNKITTY_TILESET_H
+#define SHOTGUNKITTY_TILESET_H
 
 #include "engine/Entity.h"
+
+#include <map>
+#include <utility>
 
 namespace engine {
 
     using Index = int32_t;
     using Pos = uint32_t;
 
-    class TileMap : public Entity{
+    class TileSet : public Entity{
     public:
-        TileMap(std::string name, Game& game, Entity* parent, std::string id) :
-        Entity(std::move(name), game, parent), id(std::move(id)) {}
+        TileSet(std::string name, Game& game, Entity* parent, std::vector<std::string> ids) :
+        Entity(std::move(name), game, parent), ids(std::move(ids)) {}
 
         void Load(const std::string& filename);
         void Save(const std::string& filename);
@@ -24,7 +27,7 @@ namespace engine {
         const Index& operator()(Pos x, Pos y) const;
 
         void Resize(Pos w, Pos h);
-        void Splice(Pos w, Pos h);
+
     protected:
         void renderCurrent() override;
 
@@ -33,12 +36,9 @@ namespace engine {
         Pos height = 0;
 
         std::vector<std::vector<Index>> map;
-
-        std::string id;
-        Pos mapWidth = 1;
-        Pos mapHeight = 1;
+        std::vector<std::string> ids;
     };
 
 } // engine
 
-#endif //SHOTGUNKITTY_TILEMAP_H
+#endif //SHOTGUNKITTY_TILESET_H

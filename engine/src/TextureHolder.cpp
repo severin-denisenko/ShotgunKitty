@@ -4,6 +4,8 @@
 
 #include "engine/TextureHolder.h"
 
+#include <cmath>
+
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -64,7 +66,7 @@ namespace engine {
                          0, nullptr, SDL_FLIP_NONE);
     }
 
-    void TextureHolder::Draw(const std::string& id, Transform transform) {
+    void TextureHolder::Draw(const std::string& id, Transform transform) const{
         SDL_Rect srcRect;
         SDL_Rect distRect;
 
@@ -76,7 +78,7 @@ namespace engine {
         distRect.x += transform.position.x;
         distRect.y += transform.position.y;
         distRect.w *= transform.scale.x;
-        distRect.h *= transform.scale.x;
+        distRect.h *= transform.scale.y;
 
         SDL_RenderCopyEx(renderer.renderer, map.at(id), &srcRect, &distRect,
                          transform.rotation.z, nullptr, SDL_FLIP_NONE);
@@ -92,5 +94,45 @@ namespace engine {
         int res;
         SDL_QueryTexture(map.at(id), nullptr, nullptr, nullptr, &res);
         return res;
+    }
+
+    void TextureHolder::Draw(const std::string& id, Transform transform, int mapWidth, int mapHeight, int index) const{
+        SDL_Rect srcRect;
+        SDL_Rect distRect;
+
+        SDL_FRect srcRectF;
+        SDL_FRect distRectF;
+
+        SDL_QueryTexture(map.at(id), nullptr, nullptr, &srcRect.w, &srcRect.h);
+        srcRectF.w = srcRect.w;
+        srcRectF.h = srcRect.h;
+
+        srcRectF.w /= mapWidth;
+        srcRectF.h /= mapHeight;
+        srcRectF.x = srcRectF.w * (index % mapWidth);
+        srcRectF.y = srcRectF.h * (index / mapWidth);
+
+        srcRect.w = srcRectF.w;
+        srcRect.h = srcRectF.h;
+        srcRect.x = srcRectF.x;
+        srcRect.y = srcRectF.y;
+
+        distRectF.x = 0;
+        distRectF.y = 0;
+        distRectF.w = srcRect.w;
+        distRectF.h = srcRect.h;
+
+        distRectF.x += transform.position.x;
+        distRectF.y += transform.position.y;
+        distRectF.w *= transform.scale.x;
+        distRectF.h *= transform.scale.y;
+
+        distRect.x = distRectF.x;
+        distRect.y = distRectF.y;
+        distRect.w = std::ceil(distRectF.w);
+        distRect.h = std::ceil(distRectF.h);
+
+        SDL_RenderCopyEx(renderer.renderer, map.at(id), &srcRect, &distRect,
+                         transform.rotation.z, nullptr, SDL_FLIP_NONE);
     }
 } // engine

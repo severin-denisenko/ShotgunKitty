@@ -27,7 +27,8 @@ namespace engine {
 
         void Draw(const std::string& id) const;
         void Draw(const std::string& id, int x, int y, int w, int h) const;
-        void Draw(const std::string& id, Transform transform);
+        void Draw(const std::string& id, Transform transform) const;
+        void Draw(const std::string& id, Transform transform, int mapWidth, int mapHeight, int index) const;
 
     private:
         Renderer& renderer;
