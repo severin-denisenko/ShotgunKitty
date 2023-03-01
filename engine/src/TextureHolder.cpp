@@ -63,4 +63,22 @@ namespace engine {
         SDL_RenderCopyEx(renderer.renderer, map.at(id), &srcRect, &distRect,
                          0, nullptr, SDL_FLIP_NONE);
     }
+
+    void TextureHolder::Draw(const std::string& id, Transform transform) {
+        SDL_Rect srcRect;
+        SDL_Rect distRect;
+
+        srcRect.x = 0;
+        srcRect.y = 0;
+        SDL_QueryTexture(map.at(id), nullptr, nullptr, &srcRect.w, &srcRect.h);
+        distRect = srcRect;
+
+        distRect.x += transform.position.x;
+        distRect.y += transform.position.y;
+        distRect.w *= transform.scale.x;
+        distRect.h *= transform.scale.x;
+
+        SDL_RenderCopyEx(renderer.renderer, map.at(id), &srcRect, &distRect,
+                         transform.rotation.z, nullptr, SDL_FLIP_NONE);
+    }
 } // engine

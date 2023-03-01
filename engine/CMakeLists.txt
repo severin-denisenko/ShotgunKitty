@@ -8,7 +8,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_Image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
-file(GLOB SRC src/*)
+file(GLOB SRC src/* src/Entities/*)
 file(GLOB INCLUDE include/*)
 include_directories(include)
 

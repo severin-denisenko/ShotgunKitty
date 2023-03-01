@@ -9,6 +9,7 @@
 #include <string>
 
 #include "Renderer.h"
+#include "Transform.h"
 
 struct SDL_Texture;
 
@@ -24,6 +25,7 @@ namespace engine {
 
         void Draw(const std::string& id) const;
         void Draw(const std::string& id, int x, int y, int w, int h) const;
+        void Draw(const std::string& id, Transform transform);
 
     private:
         Renderer& renderer;
