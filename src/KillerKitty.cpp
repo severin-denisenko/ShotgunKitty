@@ -35,5 +35,7 @@ void KillerKitty::Shutdown() {
 void KillerKitty::Update() {
     Game::Update();
 
-    root.getChildByName("Tiles")->transform.scale = {widow.width / 640.f,widow.width / 640.f,widow.width / 640.f};
+    root.getChildByName("Tiles")->transform.scale = {widow.width / 640.f,
+                                                     widow.width / 640.f,
+                                                     widow.width / 640.f};
 }

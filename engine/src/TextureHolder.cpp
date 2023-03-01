@@ -104,31 +104,31 @@ namespace engine {
         SDL_FRect distRectF;
 
         SDL_QueryTexture(map.at(id), nullptr, nullptr, &srcRect.w, &srcRect.h);
-        srcRectF.w = srcRect.w;
-        srcRectF.h = srcRect.h;
+        srcRectF.w = (float)srcRect.w;
+        srcRectF.h = (float)srcRect.h;
 
-        srcRectF.w /= mapWidth;
-        srcRectF.h /= mapHeight;
-        srcRectF.x = srcRectF.w * (index % mapWidth);
-        srcRectF.y = srcRectF.h * (index / mapWidth);
+        srcRectF.w /= (float)mapWidth;
+        srcRectF.h /= (float)mapHeight;
+        srcRectF.x = srcRectF.w * (float)(index % mapWidth);
+        srcRectF.y = srcRectF.h * (float)(index / mapWidth);
 
-        srcRect.w = srcRectF.w;
-        srcRect.h = srcRectF.h;
-        srcRect.x = srcRectF.x;
-        srcRect.y = srcRectF.y;
+        srcRect.w = std::floor(srcRectF.w);
+        srcRect.h = std::floor(srcRectF.h);
+        srcRect.x = std::ceil(srcRectF.x);
+        srcRect.y = std::ceil(srcRectF.y);
 
         distRectF.x = 0;
         distRectF.y = 0;
-        distRectF.w = srcRect.w;
-        distRectF.h = srcRect.h;
+        distRectF.w = (float)srcRect.w;
+        distRectF.h = (float)srcRect.h;
 
         distRectF.x += transform.position.x;
         distRectF.y += transform.position.y;
         distRectF.w *= transform.scale.x;
         distRectF.h *= transform.scale.y;
 
-        distRect.x = distRectF.x;
-        distRect.y = distRectF.y;
+        distRect.x = std::floor(distRectF.x);
+        distRect.y = std::floor(distRectF.y);
         distRect.w = std::ceil(distRectF.w);
         distRect.h = std::ceil(distRectF.h);
 
