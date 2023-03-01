@@ -12,8 +12,8 @@ namespace engine{
         float z;
     };
 
-    Vector3 operator+(Vector3& a, Vector3& b);
-    Vector3 operator*(Vector3& a, Vector3& b);
+    Vector3 operator+(const Vector3& a, const Vector3& b);
+    Vector3 operator*(const Vector3& a, const Vector3& b);
 
     class Transform{
     public:
@@ -22,7 +22,7 @@ namespace engine{
 
         Transform() = default;
 
-        Transform add(Transform& other);
+        Transform add(const Transform& other);
 
         Vector3 position {0, 0, 0};
         Vector3 rotation {0, 0, 0};

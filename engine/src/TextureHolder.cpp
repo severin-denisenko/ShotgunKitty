@@ -81,4 +81,16 @@ namespace engine {
         SDL_RenderCopyEx(renderer.renderer, map.at(id), &srcRect, &distRect,
                          transform.rotation.z, nullptr, SDL_FLIP_NONE);
     }
+
+    int TextureHolder::getWidth(const std::string& id) {
+        int res;
+        SDL_QueryTexture(map.at(id), nullptr, nullptr, &res, nullptr);
+        return res;
+    }
+
+    int TextureHolder::getHeight(const std::string& id) {
+        int res;
+        SDL_QueryTexture(map.at(id), nullptr, nullptr, nullptr, &res);
+        return res;
+    }
 } // engine

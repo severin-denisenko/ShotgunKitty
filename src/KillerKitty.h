@@ -13,6 +13,7 @@ public:
 
     void Setup() override;
     void Shutdown() override;
+    void Update() override;
 };
 
 

@@ -35,9 +35,8 @@ namespace engine {
         virtual void Setup() {}
         virtual void Shutdown() {}
 
-    private:
-        void Update();
-        void Render();
+        virtual void Update();
+        virtual void Render();
     };
 
 } // engine

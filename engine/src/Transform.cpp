@@ -5,16 +5,17 @@
 #include "engine/Transform.h"
 
 
-engine::Transform engine::Transform::add(engine::Transform& other) {
-    return {this->position + other.position,
+engine::Transform engine::Transform::add(const engine::Transform& other) {
+    Vector3 tmp = this->position * other.scale;
+    return {tmp + other.position,
             this->rotation + other.rotation,
             this->scale * other.scale};
 }
 
-engine::Vector3 engine::operator+(engine::Vector3& a, engine::Vector3& b) {
+engine::Vector3 engine::operator+(const engine::Vector3& a, const engine::Vector3& b) {
     return {a.x + b.x, a.y + b.y, a.z + b.z};
 }
 
-engine::Vector3 engine::operator*(engine::Vector3& a, engine::Vector3& b) {
+engine::Vector3 engine::operator*(const engine::Vector3& a, const engine::Vector3& b) {
     return {a.x * b.x, a.y * b.y, a.z * b.z};
 }

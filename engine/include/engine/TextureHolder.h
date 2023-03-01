@@ -22,6 +22,8 @@ namespace engine {
         void Load(const std::string& file, const std::string& id);
         void Unload(const std::string& id);
         SDL_Texture* Get(const std::string& id);
+        int getWidth(const std::string& id);
+        int getHeight(const std::string& id);
 
         void Draw(const std::string& id) const;
         void Draw(const std::string& id, int x, int y, int w, int h) const;

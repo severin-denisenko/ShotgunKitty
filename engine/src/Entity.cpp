@@ -8,13 +8,13 @@ namespace engine {
     Transform Entity::getWorldTransform() {
         Transform curr = transform;
 
-        for (Entity* i = parent; i != nullptr; i = i->getPatent())
+        for (Entity* i = parent; i != nullptr; i = i->getParent())
             curr = curr.add(i->transform);
 
         return curr;
     }
 
-    Entity* Entity::getPatent() {
+    Entity* Entity::getParent() {
         return parent;
     }
 
@@ -53,5 +53,16 @@ namespace engine {
         }
 
         renderCurrent();
+    }
+
+    Entity* Entity::getChildByName(const std::string& name) {
+        auto find = std::find_if(children.begin(), children.end(), [&name](std::unique_ptr<Entity>& entity){
+            return entity->name == name;
+        });
+
+        if (find == children.end())
+            throw std::runtime_error("Can't find child: " + name);
+
+        return find->get();
     }
 } // engine

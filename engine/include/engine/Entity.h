@@ -21,7 +21,8 @@ namespace engine {
         virtual ~Entity() = default;
 
         Transform getWorldTransform();
-        Entity* getPatent();
+        Entity* getParent();
+        Entity* getChildByName(const std::string& name);
 
         void addEntity(std::unique_ptr<Entity> entity);
 
