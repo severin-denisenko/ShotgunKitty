@@ -61,6 +61,9 @@ namespace engine {
     void TileMap::Load(const std::string& filename) {
         std::ifstream file(filename);
 
+        if (!file)
+            throw std::runtime_error("Can't open file: " + filename);
+
         file >> width;
         file >> height;
 
@@ -75,6 +78,9 @@ namespace engine {
 
     void TileMap::Save(const std::string& filename) {
         std::ofstream file(filename);
+
+        if (!file)
+            throw std::runtime_error("Can't open file: " + filename);
 
         file << width << " " << height << std::endl;
 
