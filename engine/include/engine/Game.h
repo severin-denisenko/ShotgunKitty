@@ -11,6 +11,7 @@
 #include "Renderer.h"
 #include "Input.h"
 #include "TextureHolder.h"
+#include "AudioHolder.h"
 #include "Entity.h"
 #include "Timer.h"
 
@@ -28,6 +29,7 @@ namespace engine {
         engine::TextureHolder textureHolder;
         engine::Entity root;
         engine::Timer timer;
+        engine::AudioHolder audioHolder;
 
         bool Running = true;
 

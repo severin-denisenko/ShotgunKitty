@@ -10,6 +10,9 @@
 void KillerKitty::Setup() {
     Game::Setup();
 
+    audioHolder.Load("assets/audio.wav", "audio");
+    audioHolder.Play("audio");
+
     root.addEntity(std::make_unique<InputListener>("Exit", *this, &root));
 
     textureHolder.Load("assets/Tiles/Tiles.png", "Tiles");
