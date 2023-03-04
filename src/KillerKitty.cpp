@@ -22,8 +22,8 @@ void KillerKitty::Setup() {
     map2->Splice(4, 4);
     map2->Load("assets/Tiles/Tilemap2.tilemap");
 
-    //root.addEntity(std::unique_ptr<engine::TileMap>(map));
     root.addEntity(std::unique_ptr<engine::TileMap>(map2));
+    root.addEntity(std::unique_ptr<engine::TileMap>(map));
 }
 
 void KillerKitty::Shutdown() {
@@ -33,7 +33,7 @@ void KillerKitty::Shutdown() {
 void KillerKitty::Update() {
     Game::Update();
 
-    root.getChildByName("Tiles2")->transform.scale = {widow.width / 640.f,
-                                                     widow.width / 640.f,
-                                                     widow.width / 640.f};
+    root.transform.scale = {widow.height / 200.f,
+                            widow.height / 200.f,
+                            widow.height / 200.f};
 }
