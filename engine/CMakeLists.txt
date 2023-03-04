@@ -14,3 +14,5 @@ include_directories(include)
 
 add_library(ShotgunKittyEngine ${SRC} ${INCLUDE})
 target_link_libraries(ShotgunKittyEngine ${SDL2_LIBRARIES} SDL2_Image)
+
+add_subdirectory(tools/TileMapEditor)

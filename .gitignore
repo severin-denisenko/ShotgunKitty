@@ -1,3 +1,5 @@
 /cmake-build-debug/
 /cmake-build-release/
 /.idea/
+/engine/tools/TileMapEditor/.idea/
+/engine/tools/TileMapEditor/cmake-build-debug/
