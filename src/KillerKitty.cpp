@@ -10,9 +10,6 @@
 void KillerKitty::Setup() {
     Game::Setup();
 
-    audioHolder.Load("assets/audio.wav", "audio");
-    audioHolder.Play("audio");
-
     root.addEntity(std::make_unique<InputListener>("Exit", *this, &root));
 
     textureHolder.Load("assets/Tiles/Tiles.png", "Tiles");
@@ -27,6 +24,9 @@ void KillerKitty::Setup() {
 
     root.addEntity(std::unique_ptr<engine::TileMap>(map2));
     root.addEntity(std::unique_ptr<engine::TileMap>(map));
+
+    float scale = 6;
+    root.transform.scale = {scale, scale, scale};
 }
 
 void KillerKitty::Shutdown() {
@@ -35,8 +35,4 @@ void KillerKitty::Shutdown() {
 
 void KillerKitty::Update() {
     Game::Update();
-
-    root.transform.scale = {widow.height / 200.f,
-                            widow.height / 200.f,
-                            widow.height / 200.f};
 }

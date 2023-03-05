@@ -31,6 +31,7 @@ namespace engine {
     }
 
     void AudioHolder::Unload(const std::string& id) {
+        SDL_PauseAudioDevice(map[id]->deviceId, SDL_TRUE);
         SDL_FreeWAV(map[id]->waveStart);
         map.erase(id);
     }

@@ -15,7 +15,9 @@ namespace engine {
         if (!renderer)
             throw std::runtime_error("Can't create renderer from SDL window");
 
-        SDL_SetRenderDrawColor(renderer, 20, 100, 50, 255);
+        SDL_RenderSetLogicalSize(renderer, window.windowedWidth, window.windowedHeight);
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     }
 
     void Renderer::Clear() {

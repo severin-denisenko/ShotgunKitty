@@ -18,10 +18,10 @@ namespace engine {
 
         void toggleFullScreen();
 
-        int width = 256;
-        int height = 160;
-        int windowedWidth = 256;
-        int windowedHeight = 160;
+        int width = 1920;
+        int height = 1080;
+        int windowedWidth = 1920;
+        int windowedHeight = 1080;
         bool fullScreen = true;
 
         SDL_Window* window;

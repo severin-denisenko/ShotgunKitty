@@ -17,7 +17,7 @@ namespace engine {
                                   SDL_WINDOWPOS_CENTERED,
                                   SDL_WINDOWPOS_CENTERED,
                                   windowedWidth, windowedHeight,
-                                  SDL_WINDOW_SHOWN);
+                                  SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
         if (!window)
             throw std::runtime_error("Can't create SDL window");
